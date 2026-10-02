@@ -1,0 +1,21 @@
+# Secrets
+.env
+.env.*
+
+# Logs
+*run_log*.txt
+*.log
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Large data / cache files (>5 MB)
+# Git can't ignore by size -- list any oversized data or cache files here.
+*.parquet
+*.pkl
+*.cache
+cache/

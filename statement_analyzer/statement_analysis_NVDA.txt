@@ -1,0 +1,14 @@
+======================================================================
+FINANCIAL STATEMENT ANALYSIS: NVDA
+======================================================================
+
+Receivables vs. revenue growth: OK
+  revenue grew 43.2%, receivables grew 5.8% (gap: -37.3pp)
+
+Net income vs. operating cash flow: OK
+  operating cash flow is 0.86x net income (net income: 58,321,000,000, OCF: 50,344,000,000)
+
+Gross margin jump: OK
+  gross margin 73.4% -> 74.9% (+1.5pp change)
+
+Result: no red flags from these three checks.

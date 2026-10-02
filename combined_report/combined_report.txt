@@ -1,0 +1,184 @@
+====================================================================================
+S&P 500 COMBINED REPORT: VALUATION + STATEMENT RED FLAGS + NEWS
+====================================================================================
+Generated: 2026-10-02 10:08
+
+--- MARKET HEADLINES ---
+  (none fetched)
+
+--- TOP 10 RANKED (valuation + statement checks + news) ---
+
+#1  CHTR  |  score: 643.8  |  Communication Services  |  $110.48 (-0.80% today)
+    Valuation vs. sector:
+      PEG: 0.66  |  sector avg: 2.20  (+70.0% vs sector)
+      EV/EBITDA: 5.25  |  sector avg: 14.70  (+64.3% vs sector)
+      ROE: 0.27  |  sector avg: 0.36  (-25.3% vs sector)
+      Revenue growth: -0.02  |  sector avg: 0.17  (-109.8% vs sector)
+      FCF yield: 15.31  |  sector avg: 0.23  (+6505.9% vs sector)
+      Debt/Equity: 441.58  |  sector avg: 146.80  (-200.8% vs sector)
+    Statement red-flag checks:
+      Receivables vs. revenue growth: OK
+        revenue grew -1.4%, receivables grew 4.0% (gap: 5.4pp)
+      Net income vs. operating cash flow: OK
+        operating cash flow is 3.35x net income (net income: 2,455,000,000, OCF: 8,229,000,000)
+      Gross margin jump: N/A
+        insufficient data
+    Recent news:
+      (none fetched)
+
+#2  CMCSA  |  score: 608.9  |  Communication Services  |  $21.62 (-0.35% today)
+    Valuation vs. sector:
+      PEG: 142.98 [clipped for scoring]  |  sector avg: 2.20  (-354.2% vs sector)
+      EV/EBITDA: 4.69  |  sector avg: 14.70  (+68.1% vs sector)
+      ROE: 0.11  |  sector avg: 0.36  (-68.5% vs sector)
+      Revenue growth: -0.01  |  sector avg: 0.17  (-106.9% vs sector)
+      FCF yield: 16.54  |  sector avg: 0.23  (+7035.4% vs sector)
+      Debt/Equity: 100.47  |  sector avg: 146.80  (+31.6% vs sector)
+    Statement red-flag checks:
+      Receivables vs. revenue growth: OK
+        revenue grew 0.1%, receivables grew -0.9% (gap: -1.0pp)
+      Net income vs. operating cash flow: OK
+        operating cash flow is 2.63x net income (net income: 5,699,000,000, OCF: 14,983,000,000)
+      Gross margin jump: N/A
+        insufficient data
+    Recent news:
+      (none fetched)
+
+#3  COF  |  score: 429.8  |  Financials  |  $196.44 (+1.00% today)
+    Valuation vs. sector:
+      PEG: 0.18  |  sector avg: 1.62  (+88.9% vs sector)
+      EV/EBITDA: n/a
+      ROE: 0.09  |  sector avg: 0.22  (-58.3% vs sector)
+      Revenue growth: 11.11 [clipped for scoring]  |  sector avg: 0.19  (+1486.0% vs sector)
+      FCF yield: n/a
+      Debt/Equity: n/a
+    Statement red-flag checks:
+      Receivables vs. revenue growth: N/A
+        insufficient data
+      Net income vs. operating cash flow: OK
+        operating cash flow is 2.79x net income (net income: 5,194,000,000, OCF: 14,467,000,000)
+      Gross margin jump: N/A
+        insufficient data
+    Recent news:
+      (none fetched)
+
+#4  APP  |  score: 257.0  |  Communication Services  |  $268.11 (-4.69% today)
+    Valuation vs. sector:
+      PEG: 0.68  |  sector avg: 2.20  (+69.0% vs sector)
+      EV/EBITDA: 17.47  |  sector avg: 14.70  (-18.8% vs sector)
+      ROE: 2.04  |  sector avg: 0.36  (+459.1% vs sector)
+      Revenue growth: 0.53  |  sector avg: 0.17  (+205.4% vs sector)
+      FCF yield: 3.53  |  sector avg: 0.23  (+1423.2% vs sector)
+      Debt/Equity: 111.13  |  sector avg: 146.80  (+24.3% vs sector)
+    Statement red-flag checks:
+      Receivables vs. revenue growth: OK
+        revenue grew 70.0%, receivables grew 10.9% (gap: -59.1pp)
+      Net income vs. operating cash flow: OK
+        operating cash flow is 0.87x net income (net income: 2,472,151,000, OCF: 2,160,433,000)
+      Gross margin jump: OK
+        gross margin 90.5% -> 92.2% (+1.7pp change)
+    Recent news:
+      (none fetched)
+
+#5  T  |  score: 252.8  |  Communication Services  |  $24.36 (+0.23% today)
+    Valuation vs. sector:
+      PEG: 1.54  |  sector avg: 2.20  (+30.3% vs sector)
+      EV/EBITDA: 7.40  |  sector avg: 14.70  (+49.6% vs sector)
+      ROE: 0.18  |  sector avg: 0.36  (-49.7% vs sector)
+      Revenue growth: 0.02  |  sector avg: 0.17  (-86.7% vs sector)
+      FCF yield: 6.07  |  sector avg: 0.23  (+2520.8% vs sector)
+      Debt/Equity: 129.05  |  sector avg: 146.80  (+12.1% vs sector)
+    Statement red-flag checks:
+      Receivables vs. revenue growth: OK
+        revenue grew 2.6%, receivables grew 2.2% (gap: -0.4pp)
+      Net income vs. operating cash flow: OK
+        operating cash flow is 4.76x net income (net income: 8,456,000,000, OCF: 40,284,000,000)
+      Gross margin jump: FLAGGED
+        gross margin 53.6% -> 61.6% (+8.0pp change)
+    Recent news:
+      (none fetched)
+
+#6  SNDK  |  score: 201.2  |  Information Technology  |  $1745.07 (-2.38% today)
+    Valuation vs. sector:
+      PEG: n/a
+      EV/EBITDA: 20.38  |  sector avg: 32.07  (+36.4% vs sector)
+      ROE: 0.92  |  sector avg: 0.40  (+126.3% vs sector)
+      Revenue growth: 3.72 [clipped for scoring]  |  sector avg: 0.35  (+751.3% vs sector)
+      FCF yield: 3.02  |  sector avg: 2.94  (+2.8% vs sector)
+      Debt/Equity: 1.28  |  sector avg: 79.34  (+98.4% vs sector)
+    Statement red-flag checks:
+      Receivables vs. revenue growth: OK
+        revenue grew 175.3%, receivables grew 72.7% (gap: -102.6pp)
+      Net income vs. operating cash flow: OK
+        operating cash flow is 1.02x net income (net income: 11,433,000,000, OCF: 11,671,000,000)
+      Gross margin jump: FLAGGED
+        gross margin 30.1% -> 71.5% (+41.4pp change)
+    Recent news:
+      (none fetched)
+
+#7  MU  |  score: 176.0  |  Information Technology  |  $1101.00 (+0.33% today)
+    Valuation vs. sector:
+      PEG: 0.16  |  sector avg: 1.36  (+88.3% vs sector)
+      EV/EBITDA: 11.04  |  sector avg: 32.07  (+65.6% vs sector)
+      ROE: 0.88  |  sector avg: 0.40  (+117.9% vs sector)
+      Revenue growth: 3.79 [clipped for scoring]  |  sector avg: 0.35  (+751.3% vs sector)
+      FCF yield: 2.24  |  sector avg: 2.94  (-23.7% vs sector)
+      Debt/Equity: 3.74  |  sector avg: 79.34  (+95.3% vs sector)
+    Statement red-flag checks:
+      Receivables vs. revenue growth: FLAGGED
+        revenue grew 49.5%, receivables grew 74.8% (gap: 25.2pp)
+      Net income vs. operating cash flow: OK
+        operating cash flow is 0.97x net income (net income: 47,268,000,000, OCF: 45,702,000,000)
+      Gross margin jump: N/A
+        insufficient data
+    Recent news:
+      (none fetched)
+
+#8  MAS  |  score: 132.3  |  Industrials  |  $69.09 (+1.16% today)
+    Valuation vs. sector:
+      PEG: 1.56  |  sector avg: 1.87  (+16.6% vs sector)
+      EV/EBITDA: 11.04  |  sector avg: 18.67  (+40.8% vs sector)
+      ROE: 58.62 [clipped for scoring]  |  sector avg: 0.34  (+770.7% vs sector)
+      Revenue growth: -0.03  |  sector avg: 0.11  (-126.3% vs sector)
+      FCF yield: 6.59  |  sector avg: 3.64  (+80.8% vs sector)
+      Debt/Equity: n/a
+    Statement red-flag checks:
+      Receivables vs. revenue growth: FLAGGED
+        revenue grew 0.1%, receivables grew 21.3% (gap: 21.3pp)
+      Net income vs. operating cash flow: FLAGGED
+        operating cash flow is -0.37x net income (net income: 213,000,000, OCF: -79,000,000)
+      Gross margin jump: OK
+        gross margin 34.2% -> 35.8% (+1.5pp change)
+    Recent news:
+      (none fetched)
+
+#9  FOX  |  score: 125.9  |  Communication Services  |  $55.06 (+0.25% today)
+    Valuation vs. sector:
+      PEG: 1.02  |  sector avg: 2.20  (+53.6% vs sector)
+      EV/EBITDA: 6.85  |  sector avg: 14.70  (+53.4% vs sector)
+      ROE: 0.14  |  sector avg: 0.36  (-60.8% vs sector)
+      Revenue growth: 0.28  |  sector avg: 0.17  (+62.5% vs sector)
+      FCF yield: 2.39  |  sector avg: 0.23  (+932.0% vs sector)
+      Debt/Equity: 64.06  |  sector avg: 146.80  (+56.4% vs sector)
+    Statement red-flag checks:
+      Receivables vs. revenue growth: OK
+        revenue grew 6.7%, receivables grew 17.2% (gap: 10.5pp)
+      Net income vs. operating cash flow: N/A
+        insufficient data
+      Gross margin jump: N/A
+        insufficient data
+    Recent news:
+      (none fetched)
+
+#10  SPG  |  score: 118.1  |  Real Estate  |  $201.61 (+0.40% today)
+    Valuation vs. sector:
+      PEG: 4.58  |  sector avg: 4.90  (+6.6% vs sector)
+      EV/EBITDA: 18.51  |  sector avg: 20.04  (+7.7% vs sector)
+      ROE: 1.21  |  sector avg: 0.13  (+859.6% vs sector)
+      Revenue growth: 0.20  |  sector avg: 0.08  (+132.1% vs sector)
+      FCF yield: 3.39  |  sector avg: 5.02  (-32.5% vs sector)
+      Debt/Equity: 503.50 [clipped for scoring]  |  sector avg: 121.98  (-309.9% vs sector)
+    Statement red-flag checks:
+      (no SEC CIK match / fetch failed -- skipped)
+    Recent news:
+      (none fetched)

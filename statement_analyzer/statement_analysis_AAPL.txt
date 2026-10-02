@@ -1,0 +1,14 @@
+======================================================================
+FINANCIAL STATEMENT ANALYSIS: AAPL
+======================================================================
+
+Receivables vs. revenue growth: OK
+  revenue grew 15.9%, receivables grew 3.5% (gap: -12.4pp)
+
+Net income vs. operating cash flow: OK
+  operating cash flow is 1.15x net income (net income: 101,464,000,000, OCF: 116,996,000,000)
+
+Gross margin jump: N/A
+  insufficient data
+
+Result: no red flags from these three checks.

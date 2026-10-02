@@ -1,0 +1,18 @@
+====================================================================================
+S&P 500 GROWTH SCREENER (revenue growth >= 10%)  [TEST MODE]
+====================================================================================
+Generated: 2026-08-17 12:11
+
+Scanned 22 S&P 500 tickers -- 10 passed the >=10% revenue growth filter (45.5%)
+
+--- RANKED (10 passed) ---
+#1     ALB     Materials                  growth: 31.1%    score: 113.1   $133.84 (-1.70%)
+#2     ALL     Financials                 growth: 11.8%    score: 33.8    $259.56 (-0.71%)
+#3     ABBV    Health Care                growth: 10.2%    score: 23.0    $250.86 (+0.56%)
+#4     AES     Utilities                  growth: 19.9%    score: 19.6    $14.74 (+0.10%)
+#5     ADBE    Information Technology     growth: 12.7%    score: 12.1    $251.60 (-4.70%)
+#6     AMZN    Consumer Discretionary     growth: 19.6%    score: 2.2     $260.66 (-0.76%)
+#7     GOOG    Communication Services     growth: 24.2%    score: 0.2     $340.88 (-0.77%)
+#8     GOOGL   Communication Services     growth: 24.2%    score: -0.2    $343.34 (-0.74%)
+#9     ABNB    Consumer Discretionary     growth: 16.5%    score: -2.2    $180.27 (-2.06%)
+#10    ABT     Health Care                growth: 13.0%    score: -17.3   $110.42 (-0.75%)
