@@ -21,7 +21,11 @@ Requires:
 
 import csv
 import os
+import re
 import time
+import xml.etree.ElementTree as ET
+
+import requests
 import yfinance as yf
 
 # ---------------------------------------------------------------------------
@@ -61,6 +65,28 @@ METRIC_CLIP = {
 }
 
 REQUEST_DELAY_SECONDS = 0.3  # be polite to Yahoo's free endpoint, avoid rate limits
+RSS_URL = "https://feeds.finance.yahoo.com/rss/2.0/headline"  # news fallback, see get_news_for_ticker()
+
+# Headline relevance matching (see is_relevant_headline). Suffixes are dropped
+# from the end of a company name before matching ("Albemarle Corporation" ->
+# "Albemarle"). A name's first word is also matched on its own ("Micron"),
+# except for these: ordinary words, first names, places, and initials that
+# would let unrelated headlines through.
+COMPANY_SUFFIXES = {"inc", "incorporated", "corp", "corporation", "co", "company", "companies",
+                    "ltd", "limited", "plc", "llc", "lp", "holdings", "group", "the", "sa", "nv"}
+GENERIC_FIRST_WORDS = {
+    "Advanced", "Align", "Applied", "Arch", "Arthur", "Automatic", "Avery", "Baker", "Bank",
+    "Best", "Boston", "Brown", "Builders", "C.H.", "Capital", "Cardinal", "Carrier", "Charter",
+    "Church", "Citizens", "Comfort", "Consolidated", "Crown", "Digital", "Duke", "Edison",
+    "Equity", "Erie", "Expand", "Extra", "Fair", "Federal", "Fifth", "First", "Franklin",
+    "Genuine", "Global", "Globe", "Henry", "Home", "Host", "Illinois", "Interactive",
+    "Intercontinental", "Invitation", "Iron", "J.B.", "J.M.", "Jack", "Kinder", "Live",
+    "Marathon", "Martin", "Mid-America", "Monster", "Morgan", "Northern", "Packaging", "Palo",
+    "Philip", "Phillips", "Pinnacle", "Principal", "Quest", "Ralph", "Raymond", "Realty",
+    "Regency", "Regions", "Republic", "Ross", "Royal", "Simon", "Southwest", "State", "Steel",
+    "Trade", "Tractor", "U.S.", "Union", "Universal", "Walt", "Warner", "Waste", "Wells", "West",
+    "Western", "Willis",
+}
 TOP_N_FOR_NEWS = 5           # only pull news for the top N ranked stocks
 
 # ---------------------------------------------------------------------------
@@ -69,12 +95,25 @@ TOP_N_FOR_NEWS = 5           # only pull news for the top N ranked stocks
 
 
 def load_constituents():
-    """Returns {sector: [tickers]} from the real, current S&P 500 list."""
+    """Returns {sector: [tickers]} from the real, current S&P 500 list, with
+    one ticker per company.
+
+    Some companies are in the index under two share classes (GOOGL/GOOG,
+    FOXA/FOX, NWSA/NWS). Both classes have near-identical fundamentals, so
+    keeping both would count the company twice as its own sector peer and
+    let it take two slots in the rankings. Share classes share an SEC CIK, so
+    only the first ticker listed for each CIK is kept."""
     by_sector = {}
+    seen_ciks = {}
     with open(CONSTITUENTS_FILE) as f:
         reader = csv.DictReader(f)
         for row in reader:
             ticker = row["Symbol"].replace(".", "-")  # yfinance uses BRK-B not BRK.B
+            cik = row["CIK"]
+            if cik in seen_ciks:
+                print(f"  skipping {ticker}: same company as {seen_ciks[cik]} (another share class)")
+                continue
+            seen_ciks[cik] = ticker
             sector = row["GICS Sector"]
             by_sector.setdefault(sector, []).append(ticker)
 
@@ -128,8 +167,87 @@ def get_stock_data(ticker):
         time.sleep(REQUEST_DELAY_SECONDS)
 
 
+_company_names = None      # {ticker: [name words]}, loaded on first use
+_first_word_counts = None  # {first word: how many S&P companies start with it}
+
+
+def company_name_variants(ticker):
+    """Names a headline might use for this company, from the constituents
+    file: the full name with legal suffixes and "(The)"/"(Class A)" removed
+    ("Micron Technology"), plus its first word as a short name ("Micron")
+    unless that word is shared by another S&P company or is a generic word
+    (see GENERIC_FIRST_WORDS)."""
+    global _company_names, _first_word_counts
+    if _company_names is None:
+        with open(CONSTITUENTS_FILE) as f:
+            _company_names = {r["Symbol"].replace(".", "-"): _strip_company_name(r["Security"])
+                              for r in csv.DictReader(f)}
+        _first_word_counts = {}
+        for words in _company_names.values():
+            if words:
+                _first_word_counts[words[0]] = _first_word_counts.get(words[0], 0) + 1
+
+    words = _company_names.get(ticker)
+    if not words:
+        return []
+    variants = [" ".join(words)]
+    first = words[0]
+    if (len(words) > 1 and len(first) >= 4 and first not in GENERIC_FIRST_WORDS
+            and _first_word_counts[first] == 1):
+        variants.append(first)
+    return variants
+
+
+def _strip_company_name(name):
+    name = re.sub(r"\(.*?\)", " ", name)  # "(The)", "(Class A)"
+    words = [w for w in re.split(r"[\s,]+", name) if w]
+    while words and words[-1].lower().strip(".") in COMPANY_SUFFIXES:
+        words.pop()
+    while words and words[0].lower() == "the":
+        words.pop(0)
+    return words
+
+
+def _mentions(text, phrase, ignore_case):
+    pattern = rf"(?<![A-Za-z0-9]){re.escape(phrase)}(?![A-Za-z0-9])"
+    return re.search(pattern, text, re.IGNORECASE if ignore_case else 0) is not None
+
+
+def is_relevant_headline(headline, ticker):
+    """True if the headline mentions the ticker or the company's name.
+    Tickers match case-sensitively (so "ALL" doesn't match "all"); one-letter
+    tickers like F only count as "(F)" or "$F", since a bare capital letter is
+    too common."""
+    for symbol in {ticker, ticker.replace("-", ".")}:
+        if len(symbol) == 1:
+            if f"({symbol})" in headline or f"${symbol}" in headline:
+                return True
+        elif _mentions(headline, symbol, ignore_case=False):
+            return True
+    return any(_mentions(headline, name, ignore_case=True) for name in company_name_variants(ticker))
+
+
+def get_rss_headlines(ticker, max_items=3, filter_relevant=True):
+    """Headlines from Yahoo Finance's RSS feed for a ticker. The feed mixes in
+    loosely related market stories, so by default only headlines that mention
+    the ticker or company are kept -- fewer than max_items if that's all
+    there is, rather than padding with unrelated ones."""
+    resp = requests.get(RSS_URL, params={"s": ticker, "region": "US", "lang": "en-US"},
+                        headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
+    resp.raise_for_status()
+    titles = [i.findtext("title") for i in ET.fromstring(resp.content).findall("./channel/item")]
+    titles = [t for t in titles if t]
+    if filter_relevant:
+        titles = [t for t in titles if is_relevant_headline(t, ticker)]
+    return titles[:max_items]
+
+
 def get_news_for_ticker(ticker, max_items=3):
-    """Recent news headlines tied to a specific ticker."""
+    """Recent news headlines tied to a specific ticker.
+
+    Tries yfinance first, then falls back to Yahoo's RSS feed. As of
+    yfinance 1.5-1.7, .news silently returns [] because the Yahoo endpoint
+    it calls (/xhr/ncp) responds 404 -- the RSS feed still works."""
     try:
         news = yf.Ticker(ticker).news or []
         items = []
@@ -138,6 +256,9 @@ def get_news_for_ticker(ticker, max_items=3):
             title = content.get("title") or n.get("title")
             if title:
                 items.append(title)
+        if not items:
+            # index tickers (^GSPC etc.) are for general market headlines, so don't filter those
+            items = get_rss_headlines(ticker, max_items, filter_relevant=not ticker.startswith("^"))
         return items
     except Exception as e:
         print(f"  [warning] couldn't fetch news for {ticker}: {e}")
@@ -179,12 +300,25 @@ def clip_metric(metric, value):
     return max(lo, min(hi, value))
 
 
-def pct_better(value, average, lower_is_better):
-    if value is None or average is None or average == 0:
+def percentile_rank(value, peer_values, lower_is_better):
+    """Percent of sector peers this stock beats on one metric, 0-100 (ties
+    count as half). Replaces the old "% better than sector average" score,
+    which divided by the average and exploded when it was near zero (e.g. a
+    +6,500% FCF-yield score). A rank stays bounded no matter how small or
+    skewed the sector's values are. peer_values includes this stock's own
+    value, so one copy of it is dropped before comparing."""
+    if value is None or not peer_values:
+        return None
+    others = list(peer_values)
+    others.remove(value)
+    if not others:
         return None
     if lower_is_better:
-        return (average - value) / abs(average) * 100
-    return (value - average) / abs(average) * 100
+        beaten = sum(1 for v in others if v > value)
+    else:
+        beaten = sum(1 for v in others if v < value)
+    ties = sum(1 for v in others if v == value)
+    return (beaten + 0.5 * ties) / len(others) * 100
 
 
 def composite_score(pct_scores):
@@ -211,9 +345,11 @@ def score_sector(sector, tickers):
     # sector averages from whatever data we successfully got, clipped so one
     # wild data point can't drag the whole sector's average off course
     avgs = {}
+    peer_vals = {}
     for metric in WEIGHTS:
         vals = [clip_metric(metric, d[metric]) for d in all_data.values() if d.get(metric) is not None]
         avgs[metric] = sum(vals) / len(vals) if vals else None
+        peer_vals[metric] = vals
 
     results = []
     for ticker, data in all_data.items():
@@ -222,7 +358,7 @@ def score_sector(sector, tickers):
             continue
 
         pct_scores = {
-            m: pct_better(clip_metric(m, data.get(m)), avgs.get(m), m in LOWER_IS_BETTER)
+            m: percentile_rank(clip_metric(m, data.get(m)), peer_vals.get(m), m in LOWER_IS_BETTER)
             for m in WEIGHTS
         }
         score = composite_score(pct_scores)
@@ -252,6 +388,20 @@ METRIC_LABELS = {
     "fcf_yield": "FCF yield",
     "debt_to_equity": "Debt/Equity",
 }
+
+# Display only -- scoring and METRIC_CLIP keep yfinance's raw units. yfinance
+# reports ROE and revenue growth as fractions (0.88 = 88%), but debtToEquity
+# is already a percentage (40.5 = 40.5%), and fcf_yield is computed as a
+# percentage in get_stock_data(). PEG and EV/EBITDA are plain ratios.
+PERCENT_SCALE = {"roe": 100, "revenue_growth": 100, "fcf_yield": 1, "debt_to_equity": 1}
+
+
+def format_metric(metric, value):
+    if value is None:
+        return "n/a"
+    if metric in PERCENT_SCALE:
+        return f"{value * PERCENT_SCALE[metric]:.1f}%"
+    return f"{value:.2f}"
 
 
 def build_report(all_results, market_headlines):
@@ -286,10 +436,10 @@ def build_report(all_results, market_headlines):
             if val is None:
                 lines.append(f"    {label}: n/a")
             else:
-                p_str = f"({p:+.1f}% vs sector)" if p is not None else ""
-                avg_str = f"{avg:.2f}" if avg is not None else "n/a"
+                p_str = f"(beats {p:.0f}% of sector peers)" if p is not None else ""
                 clip_str = " [clipped for scoring]" if clip_metric(metric, val) != val else ""
-                lines.append(f"    {label}: {val:.2f}{clip_str}  |  sector avg: {avg_str}  {p_str}")
+                lines.append(f"    {label}: {format_metric(metric, val)}{clip_str}  |  "
+                             f"sector avg: {format_metric(metric, avg)}  {p_str}")
 
         if rank <= TOP_N_FOR_NEWS:
             headlines = get_news_for_ticker(r["ticker"])

@@ -143,10 +143,10 @@ def format_valuation_lines(r):
         if val is None:
             lines.append(f"      {label}: n/a")
         else:
-            p_str = f"({p:+.1f}% vs sector)" if p is not None else ""
-            avg_str = f"{avg:.2f}" if avg is not None else "n/a"
+            p_str = f"(beats {p:.0f}% of sector peers)" if p is not None else ""
             clip_str = " [clipped for scoring]" if screener.clip_metric(metric, val) != val else ""
-            lines.append(f"      {label}: {val:.2f}{clip_str}  |  sector avg: {avg_str}  {p_str}")
+            lines.append(f"      {label}: {screener.format_metric(metric, val)}{clip_str}  |  "
+                         f"sector avg: {screener.format_metric(metric, avg)}  {p_str}")
     return lines
 
 
