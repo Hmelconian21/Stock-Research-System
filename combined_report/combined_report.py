@@ -136,7 +136,7 @@ def format_valuation_lines(r):
     lines = []
     m = r["metrics"]
     avgs, pct = r["peer_avgs"], r["pct_scores"]
-    for metric in screener.METRIC_LABELS:
+    for metric in screener.model_metrics(r):
         label = screener.metric_label(metric)
         val = m.get(metric)
         avg = avgs.get(metric)
@@ -198,7 +198,8 @@ def build_report(top_results, market_headlines):
         price_str = f"${m['price']:.2f}" if m.get("price") else "n/a"
         daily_str = f"({m['daily_pct']:+.2f}% today)" if m.get("daily_pct") is not None else ""
 
-        lines.append(f"\n#{rank}  {r['ticker']}  |  score: {r['score']}  |  {r['sector']}  |  {price_str} {daily_str}")
+        lines.append(f"\n#{rank}  {r['ticker']}  |  score: {r['score']}  |  {r['sector']}{screener.model_tag(r)}  |  "
+                     f"{price_str} {daily_str}")
 
         lines.append("    Valuation vs. sector:")
         lines.extend(format_valuation_lines(r))

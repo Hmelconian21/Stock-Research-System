@@ -13,7 +13,7 @@ flowchart TD
     LOAD --> FETCH["Fetch fundamentals + price<br/>yfinance .info, 0.3s delay per request"]
     FETCH --> FILTER["Keep equities only<br/>skip tickers with no/negative EPS"]
     FILTER --> CLIP["Clip outlier metrics<br/>to sane bounds"]
-    CLIP --> SCORE["Percentile rank within sector<br/>6 weighted metrics → composite score 0-100"]
+    CLIP --> SCORE["Percentile rank within sector<br/>standard or bank/insurer model<br/>→ composite score 0-100"]
     SCORE --> RANK["Rank all scored stocks"]
     RANK --> TOP["Top 10"]
     TOP --> SEC["SEC EDGAR companyfacts API<br/>ticker → CIK → XBRL facts"]
@@ -28,7 +28,7 @@ flowchart TD
 
 ## Features
 
-- **Full-index screening:** scores every company in the S&P 500 against its real GICS sector peers rather than a hand-picked peer list. The index has 503 tickers, but companies with two share classes (GOOGL/GOOG, FOXA/FOX, NWSA/NWS) are counted once, matched by SEC CIK, which leaves 500 companies. A recent full run scored 473 of them. The other 27 were skipped because their trailing EPS was negative or missing.
+- **Full-index screening:** scores every company in the S&P 500 against its real GICS sector peers rather than a hand-picked peer list. The index has 503 tickers, but companies with two share classes (GOOGL/GOOG, FOXA/FOX, NWSA/NWS) are counted once, matched by SEC CIK, which leaves 500 companies. A recent full run scored 472 of them. The other 28 were skipped: 27 because their trailing EPS was negative or missing, and Berkshire Hathaway because its GAAP earnings swing with its investment portfolio.
 - **Six weighted valuation metrics:**
   - PEG (25%)
   - EV/EBITDA (25%)
@@ -38,6 +38,7 @@ flowchart TD
   - Debt/equity (10%)
 
   Each metric is scored as the stock's percentile rank among its sector peers, and the weighted ranks combine into one composite score from 0 to 100.
+- **Separate model for banks and insurers:** 42 banks, insurers, brokers and lenders are scored on P/B (30%), ROE (35%), PEG (15%) and revenue growth (20%) instead, ranked only against each other. They're picked by GICS sub-industry, and the report tags them `[bank/insurer model]`.
 - **SEC filing red-flag checks** on the top 10, using XBRL data from EDGAR's `companyfacts` API rather than PDF scraping:
   - Receivables growing 15+ percentage points faster than revenue
   - Operating cash flow below 0.7× net income
@@ -53,10 +54,7 @@ flowchart TD
 - **Inconsistent SEC tags and yfinance fields.** Companies report the same concept under different XBRL tags. Revenue alone has three common tags (`Revenues`, `RevenueFromContractWithCustomerExcludingAssessedTax`, `SalesRevenueNet`), so each check tries a list of tags in order. When `GrossProfit` isn't reported, gross profit is derived from revenue minus COGS. On the yfinance side, the code falls back between `trailingPegRatio`/`pegRatio` and `currentPrice`/`regularMarketPrice`, handles two different news formats, falls back to Yahoo's RSS headline feed after yfinance's news endpoint started returning 404s, and waits 0.3s between requests to stay under Yahoo's rate limits during a 500-ticker scan.
 - **Sector-relative scores that blew up.** I originally scored each metric as a percentage difference from its sector average. When a sector's average was near zero, as FCF yield often is, one stock showed "+6,505.9% vs sector" on FCF yield and a composite score of 643.8, swamping every other metric. I switched to percentile rank within each sector: the share of sector peers a stock beats on each metric, with ties counted as half. Every metric score is now bounded between 0 and 100, so one outlier can't dominate the ranking. I chose rank over a z-score because a z-score divides by the sector's standard deviation, which has the same problem when values are tightly bunched.
 - **Duplicate share classes.** GOOG and GOOGL are the same company, but the two classes trade at slightly different prices, so yfinance gave them slightly different valuation ratios. In small peer groups they ended up ranked against each other: in one test run, GOOG scored 80 and GOOGL scored 20. Share classes have the same SEC CIK, so I now keep one ticker per CIK. The 503 index listings resolve to 500 companies automatically, with no hardcoded list to maintain.
-
-## Known limitations
-
-EV/EBITDA and FCF yield aren't meaningful for banks and insurers, because debt and cash flows are part of their core business rather than signs of leverage or spare cash. Financials are still scored on the same six metrics as every other sector, so their rankings rest partly on measures that don't fit them. The planned fix is sector-specific metrics, starting with price-to-book (P/B) and ROE for Financials.
+- **Valuation metrics that don't fit banks and insurers.** EV/EBITDA, FCF yield and debt/equity treat debt and cash flows as signs of leverage or spare cash, but for banks and insurers they're the business itself: deposits, insurance float, client balances. yfinance often had no EV/EBITDA or FCF for banks at all, so they were effectively ranked on the few metrics left, against payment networks and exchanges. I gave the 42 banks, insurers, brokers and lenders their own model, chosen by GICS sub-industry plus the three custody banks GICS files with asset managers. It scores P/B, ROE, PEG and revenue growth, and ranks each metric only against peers on the same model, because payment networks' ROE runs 5–20× a bank's. Scores stay on the 0–100 scale under both models. Banks with low P/B rose (USB went from #437 to #302), while HIG fell from #3 to #51, because its rank had leaned on a one-off 0.12 PEG. To check that the change didn't touch anyone else, I scored the standard-model companies with the old code on the same data and got identical results. Berkshire Hathaway is excluded and listed with its reason: since 2018, GAAP has counted its unrealized investment gains as earnings, which distorts its ROE, PEG and even yfinance's revenue figure, and yfinance's P/B for it is off by about 1,500×.
 
 ## Tech stack
 

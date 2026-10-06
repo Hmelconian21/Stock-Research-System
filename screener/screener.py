@@ -47,7 +47,50 @@ WEIGHTS = {
     "fcf_yield": 0.10,
     "debt_to_equity": 0.10,
 }
-LOWER_IS_BETTER = {"peg", "ev_ebitda", "debt_to_equity"}
+
+# Banks, insurers, brokers and lenders get their own model. Their debt and
+# cash flows are the business itself (deposits, float, client balances), so
+# EV/EBITDA, FCF yield and debt/equity don't measure what they measure for
+# other companies -- and yfinance often has no EV/EBITDA or FCF for them at
+# all. Book value is the meaningful anchor instead, and ROE drives what a
+# balance-sheet business is worth, so it carries the most weight. PEG is
+# lighter here because one-off charges distort these companies' EPS growth.
+BANK_INSURER_WEIGHTS = {
+    "pb": 0.30,
+    "roe": 0.35,
+    "peg": 0.15,
+    "revenue_growth": 0.20,
+}
+MODEL_WEIGHTS = {"standard": WEIGHTS, "bank_insurer": BANK_INSURER_WEIGHTS}
+MODEL_TAGS = {"bank_insurer": "bank/insurer model"}  # standard model isn't tagged
+
+# Which companies use the bank/insurer model, by GICS sub-industry from the
+# constituents file. Custody banks are added by ticker because GICS files
+# them under "Asset Management & Custody Banks" alongside fee-based asset
+# managers, which stay on the standard model.
+BANK_INSURER_SUB_INDUSTRIES = {
+    "Diversified Banks", "Regional Banks", "Investment Banking & Brokerage", "Consumer Finance",
+    "Life & Health Insurance", "Property & Casualty Insurance", "Multi-line Insurance",
+    "Reinsurance", "Multi-Sector Holdings",
+}
+BANK_INSURER_TICKERS = {"BNY", "NTRS", "STT"}
+
+LOWER_IS_BETTER = {"peg", "ev_ebitda", "debt_to_equity", "pb"}
+
+# Companies left out of scoring entirely, with the reason printed in the
+# skipped list. They're also dropped from the peer groups, so their distorted
+# figures don't shift anyone else's percentiles. Berkshire has reported
+# unrealized investment gains as GAAP earnings since 2018 (net income swung
+# from -$23B in 2022 to +$96B in 2023), which corrupts its ROE, PEG and even
+# yfinance's revenue figure; its yfinance P/B is also off by ~1,500x.
+SCORING_EXCLUSIONS = {
+    "BRK-B": "conglomerate — GAAP earnings distorted by investment gains",
+}
+
+# yfinance's priceToBook is sometimes nonsense -- for BRK-B it divides the B
+# share price by the A share book value, giving ~0.001. Anything at or below
+# this is treated as missing rather than ranked as the "cheapest" stock.
+MIN_SANE_PB = 0.1
 
 # Sane bounds per metric, used only for sector-average and score math -- raw
 # values still print in the report untouched. yfinance occasionally returns
@@ -62,6 +105,7 @@ METRIC_CLIP = {
     "revenue_growth": (-1, 3),
     "fcf_yield": (-50, 50),
     "debt_to_equity": (0, 500),
+    "pb": (0, 20),
 }
 
 REQUEST_DELAY_SECONDS = 0.3  # be polite to Yahoo's free endpoint, avoid rate limits
@@ -123,6 +167,21 @@ def load_constituents():
     return by_sector
 
 
+_sub_industries = None  # {ticker: GICS sub-industry}, loaded on first use
+
+
+def scoring_model(ticker):
+    """"bank_insurer" for banks, insurers, brokers and lenders (see
+    BANK_INSURER_SUB_INDUSTRIES), "standard" for everyone else."""
+    global _sub_industries
+    if _sub_industries is None:
+        with open(CONSTITUENTS_FILE) as f:
+            _sub_industries = {r["Symbol"].replace(".", "-"): r["GICS Sub-Industry"] for r in csv.DictReader(f)}
+    if ticker in BANK_INSURER_TICKERS or _sub_industries.get(ticker) in BANK_INSURER_SUB_INDUSTRIES:
+        return "bank_insurer"
+    return "standard"
+
+
 # ---------------------------------------------------------------------------
 # DATA FETCHING
 # ---------------------------------------------------------------------------
@@ -146,6 +205,10 @@ def get_stock_data(ticker):
         if price is not None and prev_close:
             daily_pct = (price - prev_close) / prev_close * 100
 
+        pb = info.get("priceToBook")
+        if pb is not None and pb <= MIN_SANE_PB:
+            pb = None
+
         return {
             "ticker": ticker,
             "quote_type": info.get("quoteType"),
@@ -157,6 +220,7 @@ def get_stock_data(ticker):
             "revenue_growth": info.get("revenueGrowth"),
             "debt_to_equity": info.get("debtToEquity"),
             "fcf_yield": fcf_yield,
+            "pb": pb,
             "price": price,
             "daily_pct": daily_pct,
         }
@@ -321,18 +385,23 @@ def percentile_rank(value, peer_values, lower_is_better):
     return (beaten + 0.5 * ties) / len(others) * 100
 
 
-def composite_score(pct_scores):
+def composite_score(pct_scores, weights=WEIGHTS):
     available = {m: s for m, s in pct_scores.items() if s is not None}
     if not available:
         return None
-    total_weight = sum(WEIGHTS[m] for m in available)
+    total_weight = sum(weights[m] for m in available)
     if total_weight == 0:
         return None
-    return sum(WEIGHTS[m] * s for m, s in available.items()) / total_weight
+    return sum(weights[m] * s for m, s in available.items()) / total_weight
 
 
 def score_sector(sector, tickers):
-    """Fetch every ticker in a sector once, compute peer averages, then score each."""
+    """Fetch every ticker in a sector once, compute peer averages, then score each.
+
+    Each stock is only ranked against sector peers on the same scoring model
+    (see scoring_model), on every metric -- so a bank's ROE is compared with
+    other banks and insurers, not with payment networks whose ROE runs 5-20x
+    higher. Scores stay on the same 0-100 scale under either model."""
     print(f"\nSector: {sector} ({len(tickers)} tickers)")
 
     all_data = {}
@@ -342,36 +411,47 @@ def score_sector(sector, tickers):
         if data and data.get("quote_type") == "EQUITY":
             all_data[ticker] = data
 
-    # sector averages from whatever data we successfully got, clipped so one
-    # wild data point can't drag the whole sector's average off course
-    avgs = {}
-    peer_vals = {}
-    for metric in WEIGHTS:
-        vals = [clip_metric(metric, d[metric]) for d in all_data.values() if d.get(metric) is not None]
-        avgs[metric] = sum(vals) / len(vals) if vals else None
-        peer_vals[metric] = vals
-
     results = []
+    by_model = {}
     for ticker, data in all_data.items():
-        if data["eps"] is None or data["eps"] <= 0:
-            results.append({"ticker": ticker, "status": "SKIPPED (no/negative earnings)", "score": None})
+        if ticker in SCORING_EXCLUSIONS:
+            results.append({"ticker": ticker, "status": f"SKIPPED ({SCORING_EXCLUSIONS[ticker]})", "score": None})
             continue
+        by_model.setdefault(scoring_model(ticker), {})[ticker] = data
 
-        pct_scores = {
-            m: percentile_rank(clip_metric(m, data.get(m)), peer_vals.get(m), m in LOWER_IS_BETTER)
-            for m in WEIGHTS
-        }
-        score = composite_score(pct_scores)
+    for model, group in by_model.items():
+        weights = MODEL_WEIGHTS[model]
 
-        results.append({
-            "ticker": ticker,
-            "status": "SCORED",
-            "score": round(score, 1) if score is not None else None,
-            "sector": sector,
-            "metrics": data,
-            "peer_avgs": avgs,
-            "pct_scores": pct_scores,
-        })
+        # peer averages from whatever data we successfully got, clipped so one
+        # wild data point can't drag the whole group's average off course
+        avgs = {}
+        peer_vals = {}
+        for metric in weights:
+            vals = [clip_metric(metric, d[metric]) for d in group.values() if d.get(metric) is not None]
+            avgs[metric] = sum(vals) / len(vals) if vals else None
+            peer_vals[metric] = vals
+
+        for ticker, data in group.items():
+            if data["eps"] is None or data["eps"] <= 0:
+                results.append({"ticker": ticker, "status": "SKIPPED (no/negative earnings)", "score": None})
+                continue
+
+            pct_scores = {
+                m: percentile_rank(clip_metric(m, data.get(m)), peer_vals.get(m), m in LOWER_IS_BETTER)
+                for m in weights
+            }
+            score = composite_score(pct_scores, weights)
+
+            results.append({
+                "ticker": ticker,
+                "status": "SCORED",
+                "score": round(score, 1) if score is not None else None,
+                "sector": sector,
+                "model": model,
+                "metrics": data,
+                "peer_avgs": avgs,
+                "pct_scores": pct_scores,
+            })
 
     return results
 
@@ -387,6 +467,7 @@ METRIC_LABELS = {
     "revenue_growth": "Revenue growth",
     "fcf_yield": "FCF yield",
     "debt_to_equity": "Debt/Equity",
+    "pb": "P/B",
 }
 
 # Display only -- scoring and METRIC_CLIP keep yfinance's raw units. yfinance
@@ -400,6 +481,17 @@ def metric_label(metric):
     """Report label for a metric, flagging the ones where a lower value scores better."""
     label = METRIC_LABELS[metric]
     return f"{label} (lower is better)" if metric in LOWER_IS_BETTER else label
+
+
+def model_metrics(result):
+    """The metrics a scored stock was ranked on, in report order."""
+    return list(MODEL_WEIGHTS[result.get("model", "standard")])
+
+
+def model_tag(result):
+    """"  [bank/insurer model]" for stocks not on the standard model, else ""."""
+    tag = MODEL_TAGS.get(result.get("model"))
+    return f"  [{tag}]" if tag else ""
 
 
 def format_metric(metric, value):
@@ -432,10 +524,11 @@ def build_report(all_results, market_headlines):
         m = r["metrics"]
         price_str = f"${m['price']:.2f}" if m.get("price") else "n/a"
         daily_str = f"({m['daily_pct']:+.2f}% today)" if m.get("daily_pct") is not None else ""
-        lines.append(f"\n#{rank}  {r['ticker']}  |  score: {r['score']}  |  {r['sector']}  |  {price_str} {daily_str}")
+        lines.append(f"\n#{rank}  {r['ticker']}  |  score: {r['score']}  |  {r['sector']}{model_tag(r)}  |  "
+                     f"{price_str} {daily_str}")
 
         avgs, pct = r["peer_avgs"], r["pct_scores"]
-        for metric in METRIC_LABELS:
+        for metric in model_metrics(r):
             label = metric_label(metric)
             val = m.get(metric)
             avg = avgs.get(metric)
