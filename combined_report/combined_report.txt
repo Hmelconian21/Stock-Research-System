@@ -1,55 +1,183 @@
 ====================================================================================
 S&P 500 COMBINED REPORT: VALUATION + STATEMENT RED FLAGS + NEWS
 ====================================================================================
-Generated: 2026-10-02 10:08
+Generated: 2026-10-06 15:59
 
 --- MARKET HEADLINES ---
-  (none fetched)
+  - Why investors' 'proverbial wall of worry' is no match for the market rally
+  - Anthropic Valuation At $965B Could Swallow Domino’s, Clorox, And 76 Other S&P 500 Firms, Burry Says
+  - Stock Market Today: Dow Rises, But Seagate Dives On This; AI Stock, Electronics Play Clear Entries (Live Coverage)
+  - Update: Big Tech Pushes US Equity Indexes Higher Amid Lower Treasury Yields
+  - Update: S&P 500, Nasdaq Composite Hit Records Amid Big-Tech Gains While Treasury Yields Decline
 
 --- TOP 10 RANKED (valuation + statement checks + news) ---
 
-#1  CHTR  |  score: 643.8  |  Communication Services  |  $110.48 (-0.80% today)
+#1  MU  |  score: 89.2  |  Information Technology  |  $1047.56 (-1.54% today)
     Valuation vs. sector:
-      PEG: 0.66  |  sector avg: 2.20  (+70.0% vs sector)
-      EV/EBITDA: 5.25  |  sector avg: 14.70  (+64.3% vs sector)
-      ROE: 0.27  |  sector avg: 0.36  (-25.3% vs sector)
-      Revenue growth: -0.02  |  sector avg: 0.17  (-109.8% vs sector)
-      FCF yield: 15.31  |  sector avg: 0.23  (+6505.9% vs sector)
-      Debt/Equity: 441.58  |  sector avg: 146.80  (-200.8% vs sector)
+      PEG: 0.16  |  sector avg: 1.36  (beats 100% of sector peers)
+      EV/EBITDA: 10.69  |  sector avg: 32.50  (beats 90% of sector peers)
+      ROE: 88.3%  |  sector avg: 40.5%  (beats 85% of sector peers)
+      Revenue growth: 379.3% [clipped for scoring]  |  sector avg: 35.2%  (beats 99% of sector peers)
+      FCF yield: 2.5%  |  sector avg: 2.9%  (beats 47% of sector peers)
+      Debt/Equity: 3.7%  |  sector avg: 79.3%  (beats 92% of sector peers)
     Statement red-flag checks:
-      Receivables vs. revenue growth: OK
-        revenue grew -1.4%, receivables grew 4.0% (gap: 5.4pp)
+      Receivables vs. revenue growth: FLAGGED
+        revenue grew 49.5%, receivables grew 74.8% (gap: 25.2pp)
       Net income vs. operating cash flow: OK
-        operating cash flow is 3.35x net income (net income: 2,455,000,000, OCF: 8,229,000,000)
+        operating cash flow is 0.97x net income (net income: 47,268,000,000, OCF: 45,702,000,000)
       Gross margin jump: N/A
         insufficient data
     Recent news:
-      (none fetched)
+      - Micron Stock Drops. Why It Needs a Memory Price Test.
+      - SK Hynix Falls 4% on Earnings Caution Before a Rebalancing Goldman Says Favors It; SanDisk Slips 2%, Micron Holds Firm
+      - Western Digital Sinks 6% as Toshiba’s Drive Expansion Hits the Group; Seagate Drops 8%, Micron Holds Flat
 
-#2  CMCSA  |  score: 608.9  |  Communication Services  |  $21.62 (-0.35% today)
+#2  CF  |  score: 88.8  |  Materials  |  $116.09 (+0.06% today)
     Valuation vs. sector:
-      PEG: 142.98 [clipped for scoring]  |  sector avg: 2.20  (-354.2% vs sector)
-      EV/EBITDA: 4.69  |  sector avg: 14.70  (+68.1% vs sector)
-      ROE: 0.11  |  sector avg: 0.36  (-68.5% vs sector)
-      Revenue growth: -0.01  |  sector avg: 0.17  (-106.9% vs sector)
-      FCF yield: 16.54  |  sector avg: 0.23  (+7035.4% vs sector)
-      Debt/Equity: 100.47  |  sector avg: 146.80  (+31.6% vs sector)
+      PEG: 0.60  |  sector avg: 2.50  (beats 96% of sector peers)
+      EV/EBITDA: 5.64  |  sector avg: 11.95  (beats 100% of sector peers)
+      ROE: 29.9%  |  sector avg: 12.9%  (beats 91% of sector peers)
+      Revenue growth: 17.6%  |  sector avg: 11.4%  (beats 67% of sector peers)
+      FCF yield: 7.3%  |  sector avg: 2.9%  (beats 83% of sector peers)
+      Debt/Equity: 40.5%  |  sector avg: 87.6%  (beats 79% of sector peers)
     Statement red-flag checks:
       Receivables vs. revenue growth: OK
-        revenue grew 0.1%, receivables grew -0.9% (gap: -1.0pp)
+        revenue grew 18.4%, receivables grew -1.1% (gap: -19.5pp)
       Net income vs. operating cash flow: OK
-        operating cash flow is 2.63x net income (net income: 5,699,000,000, OCF: 14,983,000,000)
+        operating cash flow is 3.73x net income (net income: 368,400,000, OCF: 1,374,000,000)
+      Gross margin jump: FLAGGED
+        gross margin 37.3% -> 44.9% (+7.6pp change)
+    Recent news:
+      - CF Industries Holdings (CF) Could Be 26% Undervalued Following Potash Supply Deal Jitters
+      - How Is CF Industries Stock Performance Compared to Other Agricultural Stocks
+      - CF Industries Holdings (CF) Is Down 6.1% After Trump Floats Cheaper Belarus Potash Imports Proposal
+
+#3  HIG  |  score: 80.0  |  Financials  |  $126.76 (+0.44% today)
+    Valuation vs. sector:
+      PEG: 0.12  |  sector avg: 1.62  (beats 100% of sector peers)
+      EV/EBITDA: 6.25  |  sector avg: 13.92  (beats 89% of sector peers)
+      ROE: 22.1%  |  sector avg: 21.6%  (beats 73% of sector peers)
+      Revenue growth: 8.1%  |  sector avg: 18.9%  (beats 32% of sector peers)
+      FCF yield: 16.0%  |  sector avg: 7.5%  (beats 87% of sector peers)
+      Debt/Equity: 22.3%  |  sector avg: 96.8%  (beats 84% of sector peers)
+    Statement red-flag checks:
+      Receivables vs. revenue growth: N/A
+        insufficient data
+      Net income vs. operating cash flow: OK
+        operating cash flow is 1.04x net income (net income: 2,154,000,000, OCF: 2,234,000,000)
       Gross margin jump: N/A
         insufficient data
     Recent news:
-      (none fetched)
+      - The Hartford Announces CEO Succession
+      - Is The Hartford Stock Underperforming the Dow?
+      - Hartford Insurance Group (HIG) Backs Energy Startups Through New Research Lab Partnership
 
-#3  COF  |  score: 429.8  |  Financials  |  $196.44 (+1.00% today)
+#4  EXPE  |  score: 79.6  |  Consumer Discretionary  |  $260.00 (-0.07% today)
     Valuation vs. sector:
-      PEG: 0.18  |  sector avg: 1.62  (+88.9% vs sector)
+      PEG: 0.68  |  sector avg: 1.94  (beats 93% of sector peers)
+      EV/EBITDA: 10.74  |  sector avg: 17.02  (beats 74% of sector peers)
+      ROE: 89.5%  |  sector avg: 44.0%  (beats 89% of sector peers)
+      Revenue growth: 14.0%  |  sector avg: 7.4%  (beats 84% of sector peers)
+      FCF yield: 11.0%  |  sector avg: 4.2%  (beats 91% of sector peers)
+      Debt/Equity: 230.3%  |  sector avg: 181.9%  (beats 29% of sector peers)
+    Statement red-flag checks:
+      Receivables vs. revenue growth: OK
+        revenue grew 14.3%, receivables grew 12.3% (gap: -2.0pp)
+      Net income vs. operating cash flow: OK
+        operating cash flow is 6.20x net income (net income: 872,000,000, OCF: 5,409,000,000)
+      Gross margin jump: OK
+        gross margin 71.0% -> 72.1% (+1.1pp change)
+    Recent news:
+      - Expedia Makes Flying Easier with One Key Benefits: Lounge Access During Delays, Less Time at Airport Security and Money Back When Fares Drop
+      - The One Reason To Invest In Expedia Stock
+      - How Booking Holdings and Expedia Are Taking Opposite Bets on AI Shopping Agents
+
+#5  SNDK  |  score: 79.2  |  Information Technology  |  $1661.67 (-2.49% today)
+    Valuation vs. sector:
+      PEG: n/a
+      EV/EBITDA: 19.41  |  sector avg: 32.50  (beats 61% of sector peers)
+      ROE: 91.6%  |  sector avg: 40.5%  (beats 88% of sector peers)
+      Revenue growth: 371.6% [clipped for scoring]  |  sector avg: 35.2%  (beats 99% of sector peers)
+      FCF yield: 3.2%  |  sector avg: 2.9%  (beats 61% of sector peers)
+      Debt/Equity: 1.3%  |  sector avg: 79.3%  (beats 98% of sector peers)
+    Statement red-flag checks:
+      Receivables vs. revenue growth: OK
+        revenue grew 175.3%, receivables grew 72.7% (gap: -102.6pp)
+      Net income vs. operating cash flow: OK
+        operating cash flow is 1.02x net income (net income: 11,433,000,000, OCF: 11,671,000,000)
+      Gross margin jump: FLAGGED
+        gross margin 30.1% -> 71.5% (+41.4pp change)
+    Recent news:
+      - SK Hynix Falls 4% on Earnings Caution Before a Rebalancing Goldman Says Favors It; SanDisk Slips 2%, Micron Holds Firm
+      - What Could Send SanDisk Stock Soaring?
+      - INTC, AMD, MU, SNDK, SOXX: Chips, Memory Stocks Slip Premarket After Sharp October Rally
+
+#6  WYNN  |  score: 79.1  |  Consumer Discretionary  |  $76.61 (-0.73% today)
+    Valuation vs. sector:
+      PEG: 0.73  |  sector avg: 1.94  (beats 91% of sector peers)
+      EV/EBITDA: 9.58  |  sector avg: 17.02  (beats 83% of sector peers)
+      ROE: n/a
+      Revenue growth: 6.9%  |  sector avg: 7.4%  (beats 59% of sector peers)
+      FCF yield: 6.0%  |  sector avg: 4.2%  (beats 71% of sector peers)
+      Debt/Equity: n/a
+    Statement red-flag checks:
+      Receivables vs. revenue growth: OK
+        revenue grew 10.7%, receivables grew -13.4% (gap: -24.0pp)
+      Net income vs. operating cash flow: OK
+        operating cash flow is 2.48x net income (net income: 260,516,000, OCF: 645,380,000)
+      Gross margin jump: N/A
+        insufficient data
+    Recent news:
+      - Las Vegas Sands or Wynn Resorts: Which Casino Dividend Is the Better Bet?
+      - Is Wynn Resorts Stock Underperforming the Dow?
+      - Wynn Resorts (WYNN) Stock Seems About Right After Its Sharp Fall
+
+#7  DAL  |  score: 79.0  |  Industrials  |  $83.30 (+0.26% today)
+    Valuation vs. sector:
+      PEG: 0.21  |  sector avg: 1.87  (beats 99% of sector peers)
+      EV/EBITDA: 9.43  |  sector avg: 18.80  (beats 93% of sector peers)
+      ROE: 20.1%  |  sector avg: 34.5%  (beats 45% of sector peers)
+      Revenue growth: 18.7%  |  sector avg: 11.0%  (beats 82% of sector peers)
+      FCF yield: 5.1%  |  sector avg: 3.6%  (beats 79% of sector peers)
+      Debt/Equity: 96.6%  |  sector avg: 100.9%  (beats 42% of sector peers)
+    Statement red-flag checks:
+      Receivables vs. revenue growth: FLAGGED
+        revenue grew -10.1%, receivables grew 5.3% (gap: 15.4pp)
+      Net income vs. operating cash flow: OK
+        operating cash flow is 3.06x net income (net income: 1,315,000,000, OCF: 4,027,000,000)
+      Gross margin jump: N/A
+        insufficient data
+    Recent news:
+      - Delta’s (DAL) Amazon Decision Sends Jim Cramer’s Attention Back to SpaceX (SPCX)
+      - Delta Air Lines faces high bar for fourth-quarter revenue outlook, UBS says
+      - Elon Musk threatens Delta CEO Ed Bastian 'will lose his job' after airline chooses Amazon over Starlink
+
+#8  DECK  |  score: 77.4  |  Consumer Discretionary  |  $81.64 (+1.79% today)
+    Valuation vs. sector:
+      PEG: 0.98  |  sector avg: 1.94  (beats 80% of sector peers)
+      EV/EBITDA: 7.39  |  sector avg: 17.02  (beats 96% of sector peers)
+      ROE: 42.6%  |  sector avg: 44.0%  (beats 57% of sector peers)
+      Revenue growth: 5.7%  |  sector avg: 7.4%  (beats 49% of sector peers)
+      FCF yield: 7.8%  |  sector avg: 4.2%  (beats 84% of sector peers)
+      Debt/Equity: 20.5%  |  sector avg: 181.9%  (beats 91% of sector peers)
+    Statement red-flag checks:
+      Receivables vs. revenue growth: FLAGGED
+        revenue grew -47.9%, receivables grew 18.6% (gap: 66.5pp)
+      Net income vs. operating cash flow: FLAGGED
+        operating cash flow is 0.37x net income (net income: 129,972,000, OCF: 47,904,000)
+      Gross margin jump: OK
+        gross margin 59.8% -> 56.4% (-3.4pp change)
+    Recent news:
+      - Deckers Outdoor (DECK) Could Be 33% Below Fair Value Following UGG Brand Push
+      - What You Need to Know Ahead of Deckers Outdoor’s Earnings Release
+      - Nike warning hits stocks prices of Lululemon, On, Under Armour, and Hoka maker Deckers Outdoor
+
+#9  COF  |  score: 76.6  |  Financials  |  $195.74 (+0.31% today)
+    Valuation vs. sector:
+      PEG: 0.18  |  sector avg: 1.62  (beats 99% of sector peers)
       EV/EBITDA: n/a
-      ROE: 0.09  |  sector avg: 0.22  (-58.3% vs sector)
-      Revenue growth: 11.11 [clipped for scoring]  |  sector avg: 0.19  (+1486.0% vs sector)
+      ROE: 9.0%  |  sector avg: 21.6%  (beats 16% of sector peers)
+      Revenue growth: 1111.0% [clipped for scoring]  |  sector avg: 18.9%  (beats 100% of sector peers)
       FCF yield: n/a
       Debt/Equity: n/a
     Statement red-flag checks:
@@ -60,125 +188,26 @@ Generated: 2026-10-02 10:08
       Gross margin jump: N/A
         insufficient data
     Recent news:
-      (none fetched)
+      - Credit Card Stocks Q2 In Review: Capital One (NYSE:COF) Vs Peers
+      - Capital One Celebrates Venture X Business’ Third Anniversary With Limited Time Travel Offer for Existing Cardholders
+      - 3 Reasons to Avoid COF and 1 Stock to Buy Instead
 
-#4  APP  |  score: 257.0  |  Communication Services  |  $268.11 (-4.69% today)
+#10  ALB  |  score: 76.0  |  Materials  |  $106.26 (+1.81% today)
     Valuation vs. sector:
-      PEG: 0.68  |  sector avg: 2.20  (+69.0% vs sector)
-      EV/EBITDA: 17.47  |  sector avg: 14.70  (-18.8% vs sector)
-      ROE: 2.04  |  sector avg: 0.36  (+459.1% vs sector)
-      Revenue growth: 0.53  |  sector avg: 0.17  (+205.4% vs sector)
-      FCF yield: 3.53  |  sector avg: 0.23  (+1423.2% vs sector)
-      Debt/Equity: 111.13  |  sector avg: 146.80  (+24.3% vs sector)
+      PEG: 0.79  |  sector avg: 2.50  (beats 92% of sector peers)
+      EV/EBITDA: 10.24  |  sector avg: 11.95  (beats 61% of sector peers)
+      ROE: 2.6%  |  sector avg: 12.9%  (beats 26% of sector peers)
+      Revenue growth: 31.1%  |  sector avg: 11.4%  (beats 96% of sector peers)
+      FCF yield: 10.6%  |  sector avg: 2.9%  (beats 100% of sector peers)
+      Debt/Equity: 19.0%  |  sector avg: 87.6%  (beats 96% of sector peers)
     Statement red-flag checks:
       Receivables vs. revenue growth: OK
-        revenue grew 70.0%, receivables grew 10.9% (gap: -59.1pp)
+        revenue grew 31.8%, receivables grew 15.5% (gap: -16.3pp)
       Net income vs. operating cash flow: OK
-        operating cash flow is 0.87x net income (net income: 2,472,151,000, OCF: 2,160,433,000)
-      Gross margin jump: OK
-        gross margin 90.5% -> 92.2% (+1.7pp change)
-    Recent news:
-      (none fetched)
-
-#5  T  |  score: 252.8  |  Communication Services  |  $24.36 (+0.23% today)
-    Valuation vs. sector:
-      PEG: 1.54  |  sector avg: 2.20  (+30.3% vs sector)
-      EV/EBITDA: 7.40  |  sector avg: 14.70  (+49.6% vs sector)
-      ROE: 0.18  |  sector avg: 0.36  (-49.7% vs sector)
-      Revenue growth: 0.02  |  sector avg: 0.17  (-86.7% vs sector)
-      FCF yield: 6.07  |  sector avg: 0.23  (+2520.8% vs sector)
-      Debt/Equity: 129.05  |  sector avg: 146.80  (+12.1% vs sector)
-    Statement red-flag checks:
-      Receivables vs. revenue growth: OK
-        revenue grew 2.6%, receivables grew 2.2% (gap: -0.4pp)
-      Net income vs. operating cash flow: OK
-        operating cash flow is 4.76x net income (net income: 8,456,000,000, OCF: 40,284,000,000)
+        operating cash flow is 1.32x net income (net income: 799,050,000, OCF: 1,056,241,000)
       Gross margin jump: FLAGGED
-        gross margin 53.6% -> 61.6% (+8.0pp change)
+        gross margin 14.7% -> 34.4% (+19.7pp change)
     Recent news:
-      (none fetched)
-
-#6  SNDK  |  score: 201.2  |  Information Technology  |  $1745.07 (-2.38% today)
-    Valuation vs. sector:
-      PEG: n/a
-      EV/EBITDA: 20.38  |  sector avg: 32.07  (+36.4% vs sector)
-      ROE: 0.92  |  sector avg: 0.40  (+126.3% vs sector)
-      Revenue growth: 3.72 [clipped for scoring]  |  sector avg: 0.35  (+751.3% vs sector)
-      FCF yield: 3.02  |  sector avg: 2.94  (+2.8% vs sector)
-      Debt/Equity: 1.28  |  sector avg: 79.34  (+98.4% vs sector)
-    Statement red-flag checks:
-      Receivables vs. revenue growth: OK
-        revenue grew 175.3%, receivables grew 72.7% (gap: -102.6pp)
-      Net income vs. operating cash flow: OK
-        operating cash flow is 1.02x net income (net income: 11,433,000,000, OCF: 11,671,000,000)
-      Gross margin jump: FLAGGED
-        gross margin 30.1% -> 71.5% (+41.4pp change)
-    Recent news:
-      (none fetched)
-
-#7  MU  |  score: 176.0  |  Information Technology  |  $1101.00 (+0.33% today)
-    Valuation vs. sector:
-      PEG: 0.16  |  sector avg: 1.36  (+88.3% vs sector)
-      EV/EBITDA: 11.04  |  sector avg: 32.07  (+65.6% vs sector)
-      ROE: 0.88  |  sector avg: 0.40  (+117.9% vs sector)
-      Revenue growth: 3.79 [clipped for scoring]  |  sector avg: 0.35  (+751.3% vs sector)
-      FCF yield: 2.24  |  sector avg: 2.94  (-23.7% vs sector)
-      Debt/Equity: 3.74  |  sector avg: 79.34  (+95.3% vs sector)
-    Statement red-flag checks:
-      Receivables vs. revenue growth: FLAGGED
-        revenue grew 49.5%, receivables grew 74.8% (gap: 25.2pp)
-      Net income vs. operating cash flow: OK
-        operating cash flow is 0.97x net income (net income: 47,268,000,000, OCF: 45,702,000,000)
-      Gross margin jump: N/A
-        insufficient data
-    Recent news:
-      (none fetched)
-
-#8  MAS  |  score: 132.3  |  Industrials  |  $69.09 (+1.16% today)
-    Valuation vs. sector:
-      PEG: 1.56  |  sector avg: 1.87  (+16.6% vs sector)
-      EV/EBITDA: 11.04  |  sector avg: 18.67  (+40.8% vs sector)
-      ROE: 58.62 [clipped for scoring]  |  sector avg: 0.34  (+770.7% vs sector)
-      Revenue growth: -0.03  |  sector avg: 0.11  (-126.3% vs sector)
-      FCF yield: 6.59  |  sector avg: 3.64  (+80.8% vs sector)
-      Debt/Equity: n/a
-    Statement red-flag checks:
-      Receivables vs. revenue growth: FLAGGED
-        revenue grew 0.1%, receivables grew 21.3% (gap: 21.3pp)
-      Net income vs. operating cash flow: FLAGGED
-        operating cash flow is -0.37x net income (net income: 213,000,000, OCF: -79,000,000)
-      Gross margin jump: OK
-        gross margin 34.2% -> 35.8% (+1.5pp change)
-    Recent news:
-      (none fetched)
-
-#9  FOX  |  score: 125.9  |  Communication Services  |  $55.06 (+0.25% today)
-    Valuation vs. sector:
-      PEG: 1.02  |  sector avg: 2.20  (+53.6% vs sector)
-      EV/EBITDA: 6.85  |  sector avg: 14.70  (+53.4% vs sector)
-      ROE: 0.14  |  sector avg: 0.36  (-60.8% vs sector)
-      Revenue growth: 0.28  |  sector avg: 0.17  (+62.5% vs sector)
-      FCF yield: 2.39  |  sector avg: 0.23  (+932.0% vs sector)
-      Debt/Equity: 64.06  |  sector avg: 146.80  (+56.4% vs sector)
-    Statement red-flag checks:
-      Receivables vs. revenue growth: OK
-        revenue grew 6.7%, receivables grew 17.2% (gap: 10.5pp)
-      Net income vs. operating cash flow: N/A
-        insufficient data
-      Gross margin jump: N/A
-        insufficient data
-    Recent news:
-      (none fetched)
-
-#10  SPG  |  score: 118.1  |  Real Estate  |  $201.61 (+0.40% today)
-    Valuation vs. sector:
-      PEG: 4.58  |  sector avg: 4.90  (+6.6% vs sector)
-      EV/EBITDA: 18.51  |  sector avg: 20.04  (+7.7% vs sector)
-      ROE: 1.21  |  sector avg: 0.13  (+859.6% vs sector)
-      Revenue growth: 0.20  |  sector avg: 0.08  (+132.1% vs sector)
-      FCF yield: 3.39  |  sector avg: 5.02  (-32.5% vs sector)
-      Debt/Equity: 503.50 [clipped for scoring]  |  sector avg: 121.98  (-309.9% vs sector)
-    Statement red-flag checks:
-      (no SEC CIK match / fetch failed -- skipped)
-    Recent news:
-      (none fetched)
+      - Is Albemarle Better Positioned After Its Deleveraging Actions?
+      - Albemarle Corporation to Release Third Quarter 2026 Earnings Results on Wednesday, November 4, 2026
+      - Albemarle (ALB) Registers a Bigger Fall Than the Market: Important Facts to Note
