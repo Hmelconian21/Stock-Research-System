@@ -430,6 +430,8 @@ def build_report(all_results, market_headlines):
 
         avgs, pct = r["peer_avgs"], r["pct_scores"]
         for metric, label in METRIC_LABELS.items():
+            if metric in LOWER_IS_BETTER:
+                label += " (lower is better)"
             val = m.get(metric)
             avg = avgs.get(metric)
             p = pct.get(metric)
