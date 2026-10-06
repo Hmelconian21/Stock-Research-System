@@ -136,7 +136,8 @@ def format_valuation_lines(r):
     lines = []
     m = r["metrics"]
     avgs, pct = r["peer_avgs"], r["pct_scores"]
-    for metric, label in screener.METRIC_LABELS.items():
+    for metric in screener.METRIC_LABELS:
+        label = screener.metric_label(metric)
         val = m.get(metric)
         avg = avgs.get(metric)
         p = pct.get(metric)

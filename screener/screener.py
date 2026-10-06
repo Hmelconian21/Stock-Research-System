@@ -396,6 +396,12 @@ METRIC_LABELS = {
 PERCENT_SCALE = {"roe": 100, "revenue_growth": 100, "fcf_yield": 1, "debt_to_equity": 1}
 
 
+def metric_label(metric):
+    """Report label for a metric, flagging the ones where a lower value scores better."""
+    label = METRIC_LABELS[metric]
+    return f"{label} (lower is better)" if metric in LOWER_IS_BETTER else label
+
+
 def format_metric(metric, value):
     if value is None:
         return "n/a"
@@ -429,9 +435,8 @@ def build_report(all_results, market_headlines):
         lines.append(f"\n#{rank}  {r['ticker']}  |  score: {r['score']}  |  {r['sector']}  |  {price_str} {daily_str}")
 
         avgs, pct = r["peer_avgs"], r["pct_scores"]
-        for metric, label in METRIC_LABELS.items():
-            if metric in LOWER_IS_BETTER:
-                label += " (lower is better)"
+        for metric in METRIC_LABELS:
+            label = metric_label(metric)
             val = m.get(metric)
             avg = avgs.get(metric)
             p = pct.get(metric)

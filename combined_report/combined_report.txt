@@ -14,12 +14,12 @@ Generated: 2026-10-06 15:59
 
 #1  MU  |  score: 89.2  |  Information Technology  |  $1047.56 (-1.54% today)
     Valuation vs. sector:
-      PEG: 0.16  |  sector avg: 1.36  (beats 100% of sector peers)
-      EV/EBITDA: 10.69  |  sector avg: 32.50  (beats 90% of sector peers)
+      PEG (lower is better): 0.16  |  sector avg: 1.36  (beats 100% of sector peers)
+      EV/EBITDA (lower is better): 10.69  |  sector avg: 32.50  (beats 90% of sector peers)
       ROE: 88.3%  |  sector avg: 40.5%  (beats 85% of sector peers)
       Revenue growth: 379.3% [clipped for scoring]  |  sector avg: 35.2%  (beats 99% of sector peers)
       FCF yield: 2.5%  |  sector avg: 2.9%  (beats 47% of sector peers)
-      Debt/Equity: 3.7%  |  sector avg: 79.3%  (beats 92% of sector peers)
+      Debt/Equity (lower is better): 3.7%  |  sector avg: 79.3%  (beats 92% of sector peers)
     Statement red-flag checks:
       Receivables vs. revenue growth: FLAGGED
         revenue grew 49.5%, receivables grew 74.8% (gap: 25.2pp)
@@ -34,12 +34,12 @@ Generated: 2026-10-06 15:59
 
 #2  CF  |  score: 88.8  |  Materials  |  $116.09 (+0.06% today)
     Valuation vs. sector:
-      PEG: 0.60  |  sector avg: 2.50  (beats 96% of sector peers)
-      EV/EBITDA: 5.64  |  sector avg: 11.95  (beats 100% of sector peers)
+      PEG (lower is better): 0.60  |  sector avg: 2.50  (beats 96% of sector peers)
+      EV/EBITDA (lower is better): 5.64  |  sector avg: 11.95  (beats 100% of sector peers)
       ROE: 29.9%  |  sector avg: 12.9%  (beats 91% of sector peers)
       Revenue growth: 17.6%  |  sector avg: 11.4%  (beats 67% of sector peers)
       FCF yield: 7.3%  |  sector avg: 2.9%  (beats 83% of sector peers)
-      Debt/Equity: 40.5%  |  sector avg: 87.6%  (beats 79% of sector peers)
+      Debt/Equity (lower is better): 40.5%  |  sector avg: 87.6%  (beats 79% of sector peers)
     Statement red-flag checks:
       Receivables vs. revenue growth: OK
         revenue grew 18.4%, receivables grew -1.1% (gap: -19.5pp)
@@ -54,12 +54,12 @@ Generated: 2026-10-06 15:59
 
 #3  HIG  |  score: 80.0  |  Financials  |  $126.76 (+0.44% today)
     Valuation vs. sector:
-      PEG: 0.12  |  sector avg: 1.62  (beats 100% of sector peers)
-      EV/EBITDA: 6.25  |  sector avg: 13.92  (beats 89% of sector peers)
+      PEG (lower is better): 0.12  |  sector avg: 1.62  (beats 100% of sector peers)
+      EV/EBITDA (lower is better): 6.25  |  sector avg: 13.92  (beats 89% of sector peers)
       ROE: 22.1%  |  sector avg: 21.6%  (beats 73% of sector peers)
       Revenue growth: 8.1%  |  sector avg: 18.9%  (beats 32% of sector peers)
       FCF yield: 16.0%  |  sector avg: 7.5%  (beats 87% of sector peers)
-      Debt/Equity: 22.3%  |  sector avg: 96.8%  (beats 84% of sector peers)
+      Debt/Equity (lower is better): 22.3%  |  sector avg: 96.8%  (beats 84% of sector peers)
     Statement red-flag checks:
       Receivables vs. revenue growth: N/A
         insufficient data
@@ -74,12 +74,12 @@ Generated: 2026-10-06 15:59
 
 #4  EXPE  |  score: 79.6  |  Consumer Discretionary  |  $260.00 (-0.07% today)
     Valuation vs. sector:
-      PEG: 0.68  |  sector avg: 1.94  (beats 93% of sector peers)
-      EV/EBITDA: 10.74  |  sector avg: 17.02  (beats 74% of sector peers)
+      PEG (lower is better): 0.68  |  sector avg: 1.94  (beats 93% of sector peers)
+      EV/EBITDA (lower is better): 10.74  |  sector avg: 17.02  (beats 74% of sector peers)
       ROE: 89.5%  |  sector avg: 44.0%  (beats 89% of sector peers)
       Revenue growth: 14.0%  |  sector avg: 7.4%  (beats 84% of sector peers)
       FCF yield: 11.0%  |  sector avg: 4.2%  (beats 91% of sector peers)
-      Debt/Equity: 230.3%  |  sector avg: 181.9%  (beats 29% of sector peers)
+      Debt/Equity (lower is better): 230.3%  |  sector avg: 181.9%  (beats 29% of sector peers)
     Statement red-flag checks:
       Receivables vs. revenue growth: OK
         revenue grew 14.3%, receivables grew 12.3% (gap: -2.0pp)
@@ -94,12 +94,12 @@ Generated: 2026-10-06 15:59
 
 #5  SNDK  |  score: 79.2  |  Information Technology  |  $1661.67 (-2.49% today)
     Valuation vs. sector:
-      PEG: n/a
-      EV/EBITDA: 19.41  |  sector avg: 32.50  (beats 61% of sector peers)
+      PEG (lower is better): n/a
+      EV/EBITDA (lower is better): 19.41  |  sector avg: 32.50  (beats 61% of sector peers)
       ROE: 91.6%  |  sector avg: 40.5%  (beats 88% of sector peers)
       Revenue growth: 371.6% [clipped for scoring]  |  sector avg: 35.2%  (beats 99% of sector peers)
       FCF yield: 3.2%  |  sector avg: 2.9%  (beats 61% of sector peers)
-      Debt/Equity: 1.3%  |  sector avg: 79.3%  (beats 98% of sector peers)
+      Debt/Equity (lower is better): 1.3%  |  sector avg: 79.3%  (beats 98% of sector peers)
     Statement red-flag checks:
       Receivables vs. revenue growth: OK
         revenue grew 175.3%, receivables grew 72.7% (gap: -102.6pp)
@@ -114,12 +114,12 @@ Generated: 2026-10-06 15:59
 
 #6  WYNN  |  score: 79.1  |  Consumer Discretionary  |  $76.61 (-0.73% today)
     Valuation vs. sector:
-      PEG: 0.73  |  sector avg: 1.94  (beats 91% of sector peers)
-      EV/EBITDA: 9.58  |  sector avg: 17.02  (beats 83% of sector peers)
+      PEG (lower is better): 0.73  |  sector avg: 1.94  (beats 91% of sector peers)
+      EV/EBITDA (lower is better): 9.58  |  sector avg: 17.02  (beats 83% of sector peers)
       ROE: n/a
       Revenue growth: 6.9%  |  sector avg: 7.4%  (beats 59% of sector peers)
       FCF yield: 6.0%  |  sector avg: 4.2%  (beats 71% of sector peers)
-      Debt/Equity: n/a
+      Debt/Equity (lower is better): n/a
     Statement red-flag checks:
       Receivables vs. revenue growth: OK
         revenue grew 10.7%, receivables grew -13.4% (gap: -24.0pp)
@@ -134,12 +134,12 @@ Generated: 2026-10-06 15:59
 
 #7  DAL  |  score: 79.0  |  Industrials  |  $83.30 (+0.26% today)
     Valuation vs. sector:
-      PEG: 0.21  |  sector avg: 1.87  (beats 99% of sector peers)
-      EV/EBITDA: 9.43  |  sector avg: 18.80  (beats 93% of sector peers)
+      PEG (lower is better): 0.21  |  sector avg: 1.87  (beats 99% of sector peers)
+      EV/EBITDA (lower is better): 9.43  |  sector avg: 18.80  (beats 93% of sector peers)
       ROE: 20.1%  |  sector avg: 34.5%  (beats 45% of sector peers)
       Revenue growth: 18.7%  |  sector avg: 11.0%  (beats 82% of sector peers)
       FCF yield: 5.1%  |  sector avg: 3.6%  (beats 79% of sector peers)
-      Debt/Equity: 96.6%  |  sector avg: 100.9%  (beats 42% of sector peers)
+      Debt/Equity (lower is better): 96.6%  |  sector avg: 100.9%  (beats 42% of sector peers)
     Statement red-flag checks:
       Receivables vs. revenue growth: FLAGGED
         revenue grew -10.1%, receivables grew 5.3% (gap: 15.4pp)
@@ -154,12 +154,12 @@ Generated: 2026-10-06 15:59
 
 #8  DECK  |  score: 77.4  |  Consumer Discretionary  |  $81.64 (+1.79% today)
     Valuation vs. sector:
-      PEG: 0.98  |  sector avg: 1.94  (beats 80% of sector peers)
-      EV/EBITDA: 7.39  |  sector avg: 17.02  (beats 96% of sector peers)
+      PEG (lower is better): 0.98  |  sector avg: 1.94  (beats 80% of sector peers)
+      EV/EBITDA (lower is better): 7.39  |  sector avg: 17.02  (beats 96% of sector peers)
       ROE: 42.6%  |  sector avg: 44.0%  (beats 57% of sector peers)
       Revenue growth: 5.7%  |  sector avg: 7.4%  (beats 49% of sector peers)
       FCF yield: 7.8%  |  sector avg: 4.2%  (beats 84% of sector peers)
-      Debt/Equity: 20.5%  |  sector avg: 181.9%  (beats 91% of sector peers)
+      Debt/Equity (lower is better): 20.5%  |  sector avg: 181.9%  (beats 91% of sector peers)
     Statement red-flag checks:
       Receivables vs. revenue growth: FLAGGED
         revenue grew -47.9%, receivables grew 18.6% (gap: 66.5pp)
@@ -174,12 +174,12 @@ Generated: 2026-10-06 15:59
 
 #9  COF  |  score: 76.6  |  Financials  |  $195.74 (+0.31% today)
     Valuation vs. sector:
-      PEG: 0.18  |  sector avg: 1.62  (beats 99% of sector peers)
-      EV/EBITDA: n/a
+      PEG (lower is better): 0.18  |  sector avg: 1.62  (beats 99% of sector peers)
+      EV/EBITDA (lower is better): n/a
       ROE: 9.0%  |  sector avg: 21.6%  (beats 16% of sector peers)
       Revenue growth: 1111.0% [clipped for scoring]  |  sector avg: 18.9%  (beats 100% of sector peers)
       FCF yield: n/a
-      Debt/Equity: n/a
+      Debt/Equity (lower is better): n/a
     Statement red-flag checks:
       Receivables vs. revenue growth: N/A
         insufficient data
@@ -194,12 +194,12 @@ Generated: 2026-10-06 15:59
 
 #10  ALB  |  score: 76.0  |  Materials  |  $106.26 (+1.81% today)
     Valuation vs. sector:
-      PEG: 0.79  |  sector avg: 2.50  (beats 92% of sector peers)
-      EV/EBITDA: 10.24  |  sector avg: 11.95  (beats 61% of sector peers)
+      PEG (lower is better): 0.79  |  sector avg: 2.50  (beats 92% of sector peers)
+      EV/EBITDA (lower is better): 10.24  |  sector avg: 11.95  (beats 61% of sector peers)
       ROE: 2.6%  |  sector avg: 12.9%  (beats 26% of sector peers)
       Revenue growth: 31.1%  |  sector avg: 11.4%  (beats 96% of sector peers)
       FCF yield: 10.6%  |  sector avg: 2.9%  (beats 100% of sector peers)
-      Debt/Equity: 19.0%  |  sector avg: 87.6%  (beats 96% of sector peers)
+      Debt/Equity (lower is better): 19.0%  |  sector avg: 87.6%  (beats 96% of sector peers)
     Statement red-flag checks:
       Receivables vs. revenue growth: OK
         revenue grew 31.8%, receivables grew 15.5% (gap: -16.3pp)
