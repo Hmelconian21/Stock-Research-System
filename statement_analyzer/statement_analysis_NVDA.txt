@@ -2,13 +2,13 @@
 FINANCIAL STATEMENT ANALYSIS: NVDA
 ======================================================================
 
-Receivables vs. revenue growth: OK
-  revenue grew 43.2%, receivables grew 5.8% (gap: -37.3pp)
+Receivables vs. revenue growth: FLAGGED
+  year over year to 2026-07-26: revenue grew 105.9%, receivables grew 126.8% (gap: 20.9pp)
 
-Net income vs. operating cash flow: OK
-  operating cash flow is 0.86x net income (net income: 58,321,000,000, OCF: 50,344,000,000)
+Net income vs. operating cash flow: FLAGGED
+  12 months ended 2026-07-26: operating cash flow is 0.70x net income (net income: 192,880,000,000, OCF: 134,360,000,000)
 
 Gross margin jump: OK
-  gross margin 73.4% -> 74.9% (+1.5pp change)
+  quarter ended 2026-07-26 vs a year earlier: gross margin 72.4% -> 75.0% (+2.6pp change)
 
-Result: no red flags from these three checks.
+Result: one or more red flags found -- worth digging deeper before trusting the numbers at face value.

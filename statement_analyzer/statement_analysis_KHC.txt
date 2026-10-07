@@ -2,13 +2,13 @@
 FINANCIAL STATEMENT ANALYSIS: KHC
 ======================================================================
 
-Receivables vs. revenue growth: N/A
-  insufficient data
+Receivables vs. revenue growth: OK
+  year over year to 2026-06-27: revenue grew -1.4%, receivables grew -2.5% (gap: -1.1pp)
 
 Net income vs. operating cash flow: N/A
   net income negative/zero, ratio not meaningful
 
-Gross margin jump: N/A
-  insufficient data
+Gross margin jump: OK
+  quarter ended 2026-06-27 vs a year earlier: gross margin 34.4% -> 32.4% (-2.0pp change)
 
 Result: no red flags from these three checks.
